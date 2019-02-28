@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Twitter;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use App\Project;
 
@@ -32,7 +34,14 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
-    public function show(Project $project) {
+//    public function show(Filesystem $filesystem) {
+//        dd($filesystem);
+//    }
+
+    public function show(Project $project, Twitter $twitter) {
+//        $twitter = app('twitter');
+        dd($twitter);
+
         return view('projects.show', compact('project'));
     }
 

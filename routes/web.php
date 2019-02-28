@@ -11,7 +11,16 @@
 |
 */
 
+//app()->singleton('App\Example', function () {
+//    return new \App\Example;
+//});
+
+app()->singleton('App\Services\Twitter', function () {
+    return new \App\Services\Twitter('cvervvndfasxascasc');
+});
+
 Route::get('/', function () {
+    dd(app('App\Example'));
     return view('welcome');
 });
 
@@ -39,6 +48,8 @@ Route::get('/', function () {
 Route::resource('projects', 'ProjectsController');
 
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
-Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+//Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 
+Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
+Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
 
