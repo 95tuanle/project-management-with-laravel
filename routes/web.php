@@ -15,12 +15,12 @@
 //    return new \App\Example;
 //});
 
-app()->singleton('App\Services\Twitter', function () {
-    return new \App\Services\Twitter('cvervvndfasxascasc');
-});
+//app()->singleton('App\Services\Twitter', function () {
+//    return new \App\Services\Twitter('cvervvndfasxascasc');
+//});
 
-Route::get('/', function () {
-    dd(app('App\Example'));
+Route::get('/', function (\App\Repositories\UserRepository $userRepository) {
+    dd($userRepository);
     return view('welcome');
 });
 
