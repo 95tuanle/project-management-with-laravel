@@ -19,8 +19,13 @@
 //    return new \App\Services\Twitter('cvervvndfasxascasc');
 //});
 
-Route::get('/', function (\App\Repositories\UserRepository $userRepository) {
-    dd($userRepository);
+//Route::get('/', function (\App\Repositories\UserRepository $userRepository) {
+//    dd($userRepository);
+//    return view('welcome');
+//});
+
+Route::get('/', function (\App\Services\Twitter $twitter) {
+    dd($twitter);
     return view('welcome');
 });
 

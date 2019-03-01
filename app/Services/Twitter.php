@@ -12,13 +12,13 @@ namespace App\Services;
 class Twitter
 {
 
-    protected $api_key;
+    protected $apiKey;
     /**
      * Twitter constructor.
-     * @param $api_key
-     */public function __construct($api_key)
+     * @param $apiKey
+     */public function __construct($apiKey)
     {
-        $this->api_key = $api_key;
+        $this->apiKey = $apiKey;
     }
 
 }
