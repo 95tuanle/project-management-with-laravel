@@ -20,4 +20,8 @@ class Project extends Model
 //            'description' => $description
 //        ]);
     }
+
+    public function owner() {
+        return $this->belongsTo(User::class);
+    }
 }

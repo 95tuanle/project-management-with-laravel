@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProjectCreated;
 use App\Services\Twitter;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -9,39 +10,59 @@ use App\Project;
 
 class ProjectsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // C
     public function create() {
         return view('projects.create');
     }
 
     public function store() {
-        Project::create(
-            request()->validate([
-                'title' => ['required', 'min:3', 'max:255'],
-                'description' => ['required', 'min:3']
-            ])
+        $project = Project::create(
+            $this->validateProject() + ['owner_id' => auth()->id()]
         );
 //        $project = new Project();
 //        $project->title = request('title');
 //        $project->description = request('description');
 //        $project->save();
+
+        \Mail::to($project->owner->email)->send(
+            new ProjectCreated($project)
+        );
         return redirect('/projects');
     }
 
     // R
     public function index() {
-        $projects = Project::all();
-        return view('projects.index', compact('projects'));
+//        $projects = Project::where('owner_id', auth()->id())->get();
+
+//        $projects = auth()->user()-projects;
+//
+//        return view('projects.index', compact('projects'));
+
+        return view('projects.index', [
+           'projects' => auth()->user()->projects
+        ]);
     }
 
 //    public function show(Filesystem $filesystem) {
 //        dd($filesystem);
 //    }
 
-    public function show(Project $project, Twitter $twitter) {
-//        $twitter = app('twitter');
-        dd($twitter);
+    public function show(Project $project) {
+        $this->authorize('update', $project);
 
+//        auth()->user()->can('update', $project);
+
+//        abort_if(\Gate::denies('update', $project), 403);
+
+//        abort_if(!auth()->user()->owns($project), 403);
+
+//        abort_if($project->owner_id !== auth()->id(), 403);
         return view('projects.show', compact('project'));
     }
 
@@ -51,7 +72,9 @@ class ProjectsController extends Controller
     }
 
     public function update(Project $project) {
-        $project->update(request(['title', 'description']));
+
+        $this->authorize('update', $project);
+        $project->update($this->validateProject());
 //        $project->title = request('title');
 //        $project->description = request('description');
 //        $project->save();
@@ -62,5 +85,12 @@ class ProjectsController extends Controller
     public function destroy(Project $project) {
         $project->delete();
         return redirect('/projects');
+    }
+
+    protected function validateProject() {
+        return request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'description' => ['required', 'min:3']
+        ]);
     }
 }

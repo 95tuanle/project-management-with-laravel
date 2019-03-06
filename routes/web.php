@@ -25,7 +25,7 @@
 //});
 
 Route::get('/', function (\App\Services\Twitter $twitter) {
-    dd($twitter);
+//    dd($twitter);
     return view('welcome');
 });
 
@@ -50,11 +50,15 @@ Route::get('/', function (\App\Services\Twitter $twitter) {
 //
 //Route::delete('/projects/{project}', 'ProjectsController@delete');
 
-Route::resource('projects', 'ProjectsController');
+Route::resource('projects', 'ProjectsController')->middleware('can:update,project');
 
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
-//Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 
 Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
 Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

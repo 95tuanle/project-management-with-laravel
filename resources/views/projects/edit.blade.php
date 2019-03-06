@@ -26,6 +26,9 @@
         </div>
     </form>
 
+    @include('errors')
+
+
     <form method="post" action="/projects/{{$project->id}}">
         @method('delete')
         @csrf
@@ -36,6 +39,7 @@
                 <button type="submit" class="button">Delete Project</button>
             </div>
         </div>
+
     </form>
 
 @endsection
