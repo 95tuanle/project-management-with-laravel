@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ProjectCreated;
+use App\Events\ProjectCreated;
 use App\Services\Twitter;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -30,9 +30,7 @@ class ProjectsController extends Controller
 //        $project->description = request('description');
 //        $project->save();
 
-        \Mail::to($project->owner->email)->send(
-            new ProjectCreated($project)
-        );
+//        event(new ProjectCreated($project));
         return redirect('/projects');
     }
 
