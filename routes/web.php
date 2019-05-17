@@ -26,7 +26,10 @@
 
 Route::get('/', function (\App\Services\Twitter $twitter) {
 //    dd($twitter);
-    return view('welcome');
+//    return view('welcome');
+    $user = App\User::first();
+    $user->notify(new \App\Notifications\SubscriptionRenewalFailed());
+    return 'PAM';
 });
 
 /*
