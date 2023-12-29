@@ -7,9 +7,9 @@
  */
 
 return [
-  'stripe' => [
-      'private' => ''
-  ]
+    'stripe' => [
+        'private' => ''
+    ]
 ];
 
 //confiq('tuanle.strip.private')

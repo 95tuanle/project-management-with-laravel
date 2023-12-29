@@ -1,13 +1,13 @@
 @component('mail::message')
-# New Project: {{$project->title}}
+    # New Project: {{$project->title}}
 
-{{$project->description}}
+    {{$project->description}}
 
 
-@component('mail::button', ['url' => url('/projects/' . $project->id)])
-View Project
-@endcomponent
+    @component('mail::button', ['url' => url('/projects/' . $project->id)])
+        View Project
+    @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+    Thanks,<br>
+    {{ config('app.name') }}
 @endcomponent

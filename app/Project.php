@@ -4,7 +4,6 @@ namespace App;
 
 use App\Events\ProjectCreated;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Mail;
 
 class Project extends Model
 {
@@ -23,11 +22,8 @@ class Project extends Model
 //        });
 //    }
 
-    public function tasks() {
-        return $this->hasMany(Task::class);
-    }
-
-    public function addTask($task) {
+    public function addTask($task)
+    {
         $this->tasks()->create($task);
 //        return Task::create([
 //            'project_id' => $this->id,
@@ -35,7 +31,13 @@ class Project extends Model
 //        ]);
     }
 
-    public function owner() {
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function owner()
+    {
         return $this->belongsTo(User::class);
     }
 }

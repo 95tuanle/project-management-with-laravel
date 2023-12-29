@@ -8,13 +8,14 @@
         {{--{{method_field('patch')}}--}}
         {{--{{csrf_field()}}--}}
         <div class="field">
-            <label class="label"  for="title">Title</label>
+            <label class="label" for="title">Title</label>
             <div class="control">
-                <input type="text" class="input" name="title" placeholder="Title" value="{{ $project->title }}" required>
+                <input type="text" class="input" name="title" placeholder="Title" value="{{ $project->title }}"
+                       required>
             </div>
         </div>
         <div class="field">
-            <label class="label"  for="description">Description</label>
+            <label class="label" for="description">Description</label>
             <div class="control">
                 <textarea class="textarea" name="description" required>{{ $project->description }}</textarea>
             </div>

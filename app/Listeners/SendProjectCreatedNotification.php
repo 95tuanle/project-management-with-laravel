@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Mail\ProjectCreated as ProjectCreatedMail;
 use App\Events\ProjectCreated;
+use App\Mail\ProjectCreated as ProjectCreatedMail;
 use Illuminate\Support\Facades\Mail;
 
 class SendProjectCreatedNotification
@@ -21,7 +21,7 @@ class SendProjectCreatedNotification
     /**
      * Handle the event.
      *
-     * @param  ProjectCreated  $event
+     * @param ProjectCreated $event
      * @return void
      */
     public function handle(ProjectCreated $event)

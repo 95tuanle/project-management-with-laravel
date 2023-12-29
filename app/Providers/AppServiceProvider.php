@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\Twitter;
-use function foo\func;
 use Illuminate\Support\ServiceProvider;
+use function foo\func;
 
 class AppServiceProvider extends ServiceProvider
 {

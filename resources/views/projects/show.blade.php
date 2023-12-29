@@ -20,7 +20,8 @@
                         @csrf
 
                         <label class="checkbox {{$task->completed ? 'is-complete':''}}" for="completed">
-                            <input type="checkbox" name="completed" onchange="this.form.submit()" {{$task->completed ? 'checked':''}}>
+                            <input type="checkbox" name="completed"
+                                   onchange="this.form.submit()" {{$task->completed ? 'checked':''}}>
                             {{$task->description}}
 
                         </label>
@@ -36,7 +37,8 @@
         <div class="field">
             <label class="label" for="description">New Task</label>
             <div class="control">
-                <input type="text" class="input {{$errors->has('description') ? 'is-danger':''}}" name="description" required>
+                <input type="text" class="input {{$errors->has('description') ? 'is-danger':''}}" name="description"
+                       required>
             </div>
         </div>
         <div class="field">
