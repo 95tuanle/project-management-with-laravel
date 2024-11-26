@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
-        "laravel/framework": "v10.39.0",
+        "laravel/framework": "v10.48.23",
         "laravel/tinker": "v2.8.2",
         "fakerphp/faker": "v1.23.0",
         "laravel/ui": "v4.3.0"
