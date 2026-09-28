@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "1.9.0",
-        "filp/whoops": "2.15.4",
+        "filp/whoops": "2.18.5",
         "laravel/telescope": "v4.17.3",
         "mockery/mockery": "1.6.15",
         "phpunit/phpunit": "10.5.62"
